@@ -1,8 +1,8 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:observations/dimension.dart';
+import 'package:observations/observation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
@@ -12,6 +12,10 @@ class DatabaseHelper {
   String dimensionTable = 'dim_table';
   String colId = 'id';
   String colName = 'name';
+  String observationTable = 'obs_table';
+  String colDim = 'dim_id';
+  String colQuality = 'quality';
+  String colComments = 'comments';
 
   DatabaseHelper._createInstance(); // Named constructor to create instance of DatabaseHelper
 
@@ -35,7 +39,6 @@ class DatabaseHelper {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'dim.db';
 
-    // Open/create the database at a given path
     var dimensionDatabase =
         await openDatabase(path, version: 1, onCreate: _createDb);
     print("database opened");
@@ -45,19 +48,19 @@ class DatabaseHelper {
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $dimensionTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT)');
+    await db.execute(
+        'CREATE TABLE $observationTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colDim INTEGER, $colQuality TEXT, $colComments TEXT, ' +
+            'FOREIGN KEY($colDim) REFERENCES $dimensionTable($colId)');
     print("create db called");
   }
 
-  // Fetch Operation: Get all todo objects from database
   Future<List<Map<String, dynamic>>> getDimensionMapList() async {
     Database db = await this.database;
 
-//		var result = await db.rawQuery('SELECT * FROM $todoTable order by $colTitle ASC');
     var result = await db.query(dimensionTable, orderBy: '$colName ASC');
     return result;
   }
 
-  // Insert Operation: Insert a todo object to database
   Future<int> insertDimension(Dimension dim) async {
     print("inserting dimension");
     Database db = await this.database;
@@ -65,7 +68,13 @@ class DatabaseHelper {
     return result;
   }
 
-  // Update Operation: Update a todo object and save it to database
+  Future<int> insertObservation(Observation obs) async {
+    print("inserting observation");
+    Database db = await this.database;
+    var result = await db.insert(dimensionTable, obs.toMap());
+    return result;
+  }
+
   Future<int> updateDimension(Dimension dim) async {
     var db = await this.database;
     var result = await db.update(dimensionTable, dim.toMap(),
@@ -73,14 +82,12 @@ class DatabaseHelper {
     return result;
   }
 
-// Delete Operation: Delete a todo object from database
   Future<int> deleteAllDimensions() async {
     var db = await this.database;
     int result = await db.rawDelete('DELETE FROM $dimensionTable');
     return result;
   }
 
-  // Delete Operation: Delete a todo object from database
   Future<int> deleteDimension(int id) async {
     var db = await this.database;
     int result =
@@ -88,7 +95,6 @@ class DatabaseHelper {
     return result;
   }
 
-  // Get number of todo objects in database
   Future<int> getCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
@@ -97,7 +103,6 @@ class DatabaseHelper {
     return result;
   }
 
-  // Get the 'Map List' [ List<Map> ] and convert it to 'todo List' [ List<Todo> ]
   Future<List<Dimension>> getDimensionList() async {
     var dimensionMapList =
         await getDimensionMapList(); // Get 'Map List' from database
@@ -108,7 +113,6 @@ class DatabaseHelper {
     for (int i = 0; i < count; i++) {
       dimensionList.add(Dimension.fromMapObject(dimensionMapList[i]));
     }
-
     return dimensionList;
   }
 }
