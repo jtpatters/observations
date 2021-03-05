@@ -71,7 +71,7 @@ class DatabaseHelper {
   Future<int> insertObservation(Observation obs) async {
     print("inserting observation");
     Database db = await this.database;
-    var result = await db.insert(dimensionTable, obs.toMap());
+    var result = await db.insert(observationTable, obs.toMap());
     return result;
   }
 
