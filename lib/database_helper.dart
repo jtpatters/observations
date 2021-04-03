@@ -16,6 +16,7 @@ class DatabaseHelper {
   String colDim = 'dim_id';
   String colQuality = 'quality';
   String colComments = 'comments';
+  String colDate = 'datetime';
 
   DatabaseHelper._createInstance(); // Named constructor to create instance of DatabaseHelper
 
@@ -50,7 +51,7 @@ class DatabaseHelper {
         'CREATE TABLE $dimensionTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT)');
     await db.execute(
         'CREATE TABLE $observationTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colDim INTEGER, $colQuality TEXT, $colComments TEXT, ' +
-            'FOREIGN KEY($colDim) REFERENCES $dimensionTable($colId)');
+            'FOREIGN KEY($colDim) REFERENCES $dimensionTable($colId))');
     print("create db called");
   }
 

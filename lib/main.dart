@@ -104,7 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => SecondRoute("Observation Sentiment")),
+                    builder: (context) => SecondRoute(
+                        this.dimensionList[position].name +
+                            " Observation Sentiment")),
               );
             },
           ),

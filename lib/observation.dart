@@ -3,10 +3,12 @@ class Observation {
   int _dimId;
   String _quality;
   String _comments;
+  DateTime _date;
 
   int get id => _id;
   String get quality => _quality;
   String get comments => _comments;
+  DateTime get date => _date;
 
   set comments(String newComments) {
     if (newComments.length <= 255) {
