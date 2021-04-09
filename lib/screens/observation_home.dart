@@ -18,15 +18,9 @@ class _ObservationHome extends State<ObservationHome> {
   List<Dimension> dimensionList;
   int count = 0;
 
-  void push(String name) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SecondRoute(name)));
-  }
-
   @override
   Widget build(BuildContext context) {
     if (dimensionList == null) {
-      print("list refresh");
       dimensionList = <Dimension>[];
       updateDimensionList();
     }
@@ -85,23 +79,12 @@ class _ObservationHome extends State<ObservationHome> {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SecondRoute(
-                        this.dimensionList[position].name +
-                            " Observation Sentiment")),
-              );
+              Navigator.pushNamed(context, '/quality');
             },
           ),
         );
       },
     );
-  }
-
-  void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   getFirstLetter(String title) {
@@ -132,20 +115,20 @@ class _ObservationHome extends State<ObservationHome> {
   }
 }
 
-class SecondRoute extends StatefulWidget {
-  final String recordName;
-  const SecondRoute(this.recordName);
+class ObservationQuality extends StatefulWidget {
+  //final String recordName;
+  const ObservationQuality();
 
   @override
-  _SecondRoute createState() => _SecondRoute();
+  _ObservationQuality createState() => _ObservationQuality();
 }
 
-class _SecondRoute extends State<SecondRoute> {
+class _ObservationQuality extends State<ObservationQuality> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.recordName),
+        title: Text("Quality"),
       ),
       body: Container(
         margin: const EdgeInsets.only(bottom: 80.0),
@@ -158,7 +141,8 @@ class _SecondRoute extends State<SecondRoute> {
               children: <Widget>[
                 ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pop(context);
+                    //Navigator.pop(context);
+                    Navigator.pushNamed(context, '/context');
                   },
                   icon: Icon(Icons.sentiment_satisfied_alt, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),
@@ -168,7 +152,8 @@ class _SecondRoute extends State<SecondRoute> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pop(context);
+                    //Navigator.pop(context);
+                    Navigator.pushNamed(context, '/context');
                   },
                   icon: Icon(Icons.sentiment_dissatisfied_rounded, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),
@@ -185,20 +170,21 @@ class _SecondRoute extends State<SecondRoute> {
   }
 }
 
-class ThirdRoute extends StatefulWidget {
-  final String recordName;
-  const ThirdRoute(this.recordName);
+class ObservationContext extends StatefulWidget {
+  //final String recordName;
+  //final String quality;
+  const ObservationContext();
 
   @override
-  _ThirdRoute createState() => _ThirdRoute();
+  _ObservationContext createState() => _ObservationContext();
 }
 
-class _ThirdRoute extends State<SecondRoute> {
+class _ObservationContext extends State<ObservationContext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.recordName),
+        title: Text("Context"),
       ),
       body: Container(
         margin: const EdgeInsets.only(bottom: 80.0),
@@ -212,6 +198,7 @@ class _ThirdRoute extends State<SecondRoute> {
                 ElevatedButton.icon(
                   onPressed: () {
                     Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   icon: Icon(Icons.sentiment_satisfied_alt, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),
@@ -221,6 +208,7 @@ class _ThirdRoute extends State<SecondRoute> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
+                    Navigator.pop(context);
                     Navigator.pop(context);
                   },
                   icon: Icon(Icons.sentiment_dissatisfied_rounded, size: 80.0),

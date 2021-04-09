@@ -9,9 +9,12 @@ class Observations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Observations',
-      theme: ThemeData.dark(),
-      home: ObservationHome(title: 'Observations'),
-    );
+        title: 'Observations',
+        theme: ThemeData.dark(),
+        home: ObservationHome(title: 'Observations'),
+        routes: <String, WidgetBuilder>{
+          '/quality': (BuildContext context) => ObservationQuality(),
+          '/context': (BuildContext context) => ObservationContext()
+        });
   }
 }
