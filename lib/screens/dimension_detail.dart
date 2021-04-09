@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:observations/dimension.dart';
+import 'package:observations/domain/dimension.dart';
 import 'package:observations/database_helper.dart';
-import 'package:intl/intl.dart';
 
 class DimensionDetail extends StatefulWidget {
   final String appBarTitle;

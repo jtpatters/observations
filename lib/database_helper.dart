@@ -1,8 +1,8 @@
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:observations/dimension.dart';
-import 'package:observations/observation.dart';
+import 'package:observations/domain/dimension.dart';
+import 'package:observations/domain/observation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
