@@ -187,35 +187,35 @@ class _ObservationContext extends State<ObservationContext> {
         title: Text("Context"),
       ),
       body: Container(
-        margin: const EdgeInsets.only(bottom: 80.0),
+        margin: const EdgeInsets.only(bottom: 20.0),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.sentiment_satisfied_alt, size: 80.0),
-                  label: Text('', style: TextStyle(fontSize: 20)),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                  ),
+                TextField(
+                  keyboardType: TextInputType.multiline,
+                  minLines: 3, //Normal textInputField will be displayed
+                  maxLines: 5, // when user presses enter it will adapt to it
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: ''),
                 ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.sentiment_dissatisfied_rounded, size: 80.0),
-                  label: Text('', style: TextStyle(fontSize: 20)),
+                ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                    primary: Theme.of(context).primaryColorDark,
+                    onPrimary: Color.fromRGBO(255, 255, 255, 0.8),
+                    shadowColor: Theme.of(context).primaryColorLight,
+                    elevation: 5,
                   ),
+                  child: Text(
+                    'Save',
+                    textScaleFactor: 1.5,
+                  ),
+                  onPressed: () {
+                    setState(() {});
+                  },
                 ),
               ],
             ),
