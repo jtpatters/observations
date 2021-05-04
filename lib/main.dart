@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:observations/screens/observation_home.dart';
+import 'package:observations/screens/observation_quality.dart';
+import 'package:observations/screens/observation_context.dart';
 
 void main() {
   runApp(Observations());
