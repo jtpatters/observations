@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:observations/domain/dimension.dart';
 import 'package:observations/database_helper.dart';
+import 'package:toast/toast.dart';
 
 class DimensionDetail extends StatefulWidget {
   final String appBarTitle;
@@ -146,10 +147,7 @@ class DimensionDetailState extends State<DimensionDetail> {
   }
 
   void _showAlertDialog(String title, String message) {
-    AlertDialog alertDialog = AlertDialog(
-      title: Text(title),
-      content: Text(message),
-    );
-    showDialog(context: context, builder: (_) => alertDialog);
+    Toast.show(message, context,
+        duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
   }
 }

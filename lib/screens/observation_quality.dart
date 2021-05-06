@@ -16,7 +16,7 @@ class _ObservationQuality extends State<ObservationQuality> {
         title: Text("Quality"),
       ),
       body: Container(
-        margin: const EdgeInsets.only(bottom: 80.0),
+        margin: const EdgeInsets.only(bottom: 40.0),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
