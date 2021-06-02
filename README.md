@@ -1,10 +1,10 @@
 # observations
 
-A new Flutter project.
+A mobile application for recording observations and sufacing trends
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is being built with Dart and Flutter.
 
 A few resources to get you started if this is your first Flutter project:
 
