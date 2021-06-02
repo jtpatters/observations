@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:observations/domain/observation.dart';
+import 'package:observations/database_helper.dart';
+import 'package:toast/toast.dart';
 
 class ObservationContext extends StatefulWidget {
   //final String recordName;
@@ -10,6 +13,9 @@ class ObservationContext extends StatefulWidget {
 }
 
 class _ObservationContext extends State<ObservationContext> {
+  DatabaseHelper helper = DatabaseHelper();
+  Observation observation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +30,10 @@ class _ObservationContext extends State<ObservationContext> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, bottom: 0),
+                child: Text('Observation Context:'),
+              ),
               Padding(
                 padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                 child: TextField(
@@ -48,7 +58,9 @@ class _ObservationContext extends State<ObservationContext> {
                     textScaleFactor: 1.5,
                   ),
                   onPressed: () {
-                    setState(() {});
+                    setState(() {
+                      _save();
+                    });
                   },
                 ),
               ),
@@ -57,5 +69,25 @@ class _ObservationContext extends State<ObservationContext> {
         ),
       ),
     );
+  }
+
+  void _save() async {
+    Navigator.pushNamed(context, '/home');
+
+    //todo.date = DateFormat.yMMMd().format(DateTime.now());
+    int result;
+
+    result = await helper.insertObservation(observation);
+
+    if (result != 0) {
+      _showAlertDialog('Status', 'Observation Saved Successfully');
+    } else {
+      _showAlertDialog('Status', 'Problem Saving Observation');
+    }
+  }
+
+  void _showAlertDialog(String title, String message) {
+    Toast.show(message, context,
+        duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
   }
 }
