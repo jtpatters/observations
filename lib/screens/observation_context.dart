@@ -72,7 +72,8 @@ class _ObservationContext extends State<ObservationContext> {
   }
 
   void _save() async {
-    Navigator.pushNamed(context, '/home');
+    Navigator.pop(context);
+    Navigator.pop(context);
 
     //todo.date = DateFormat.yMMMd().format(DateTime.now());
     int result;

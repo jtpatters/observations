@@ -16,9 +16,7 @@ class Observations extends StatelessWidget {
         home: ObservationHome(title: 'Observations'),
         routes: <String, WidgetBuilder>{
           '/quality': (BuildContext context) => ObservationQuality(),
-          '/context': (BuildContext context) => ObservationContext(),
-          '/home': (BuildContext context) =>
-              ObservationHome(title: 'Observations'),
+          '/context': (BuildContext context) => ObservationContext()
         });
   }
 }
