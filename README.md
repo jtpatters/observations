@@ -1,6 +1,6 @@
 # observations
 
-A mobile application for recording observations and sufacing trends
+A mobile application for recording observations and sufacing trends.
 
 ## Getting Started
 
