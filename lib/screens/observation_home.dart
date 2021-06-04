@@ -79,7 +79,8 @@ class _ObservationHome extends State<ObservationHome> {
               ],
             ),
             onTap: () {
-              Navigator.pushNamed(context, '/quality');
+              Navigator.pushNamed(context, '/quality',
+                  arguments: {"dim_id": this.dimensionList[position].id});
             },
           ),
         );

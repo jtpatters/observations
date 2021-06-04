@@ -22,6 +22,10 @@ class Observation {
     }
   }
 
+  set dimId(int newDimId) {
+    _dimId = newDimId;
+  }
+
   // Convert a Observation object into a Map object
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();

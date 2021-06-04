@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 class ObservationQuality extends StatefulWidget {
   //final String recordName;
-  const ObservationQuality();
 
   @override
   _ObservationQuality createState() => _ObservationQuality();
 }
 
 class _ObservationQuality extends State<ObservationQuality> {
+  int dim_id;
+
   @override
   Widget build(BuildContext context) {
+    final Map<String, Object> arguments =
+        ModalRoute.of(context).settings.arguments;
+    dim_id = arguments['dim_id'];
     return Scaffold(
       appBar: AppBar(
         title: Text("Quality"),
@@ -26,9 +30,8 @@ class _ObservationQuality extends State<ObservationQuality> {
               children: <Widget>[
                 ElevatedButton.icon(
                   onPressed: () {
-                    //Navigator.pop(context);
                     Navigator.pushNamed(context, '/context',
-                        arguments: {"context": "good"});
+                        arguments: {"quality": "good", "dim_id": dim_id});
                   },
                   icon: Icon(Icons.sentiment_satisfied_alt, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),
@@ -38,9 +41,8 @@ class _ObservationQuality extends State<ObservationQuality> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    //Navigator.pop(context);
                     Navigator.pushNamed(context, '/context',
-                        arguments: {"context": "bad"});
+                        arguments: {"quality": "bad", "dim_id": dim_id});
                   },
                   icon: Icon(Icons.sentiment_dissatisfied_rounded, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),

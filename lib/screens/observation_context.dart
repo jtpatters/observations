@@ -15,6 +15,14 @@ class ObservationContext extends StatefulWidget {
 class _ObservationContext extends State<ObservationContext> {
   DatabaseHelper helper = DatabaseHelper();
   Observation observation;
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +30,8 @@ class _ObservationContext extends State<ObservationContext> {
         ModalRoute.of(context).settings.arguments;
     observation = new Observation();
     observation.quality = arguments['quality'];
+    observation.dimId = arguments['dim_id'];
+    print(arguments['quality']);
     return Scaffold(
       appBar: AppBar(
         title: Text("Context"),
@@ -41,6 +51,7 @@ class _ObservationContext extends State<ObservationContext> {
               Padding(
                 padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                 child: TextField(
+                  controller: myController,
                   keyboardType: TextInputType.multiline,
                   minLines: 3, //Normal textInputField will be displayed
                   maxLines: 5, // when user presses enter it will adapt to it
@@ -63,6 +74,8 @@ class _ObservationContext extends State<ObservationContext> {
                   ),
                   onPressed: () {
                     setState(() {
+                      observation.comments = myController.text;
+                      print(observation.toMap());
                       _save();
                     });
                   },
