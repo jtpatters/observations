@@ -134,7 +134,7 @@ class DimensionDetailState extends State<DimensionDetail> {
   void _delete() async {
     Navigator.pop(context, true);
     if (dimension.id == null) {
-      _showAlertDialog('Status', 'No Todo was deleted');
+      _showAlertDialog('Status', 'No dimension was deleted');
       return;
     }
 

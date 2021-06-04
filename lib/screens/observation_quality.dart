@@ -27,7 +27,8 @@ class _ObservationQuality extends State<ObservationQuality> {
                 ElevatedButton.icon(
                   onPressed: () {
                     //Navigator.pop(context);
-                    Navigator.pushNamed(context, '/context');
+                    Navigator.pushNamed(context, '/context',
+                        arguments: {"context": "good"});
                   },
                   icon: Icon(Icons.sentiment_satisfied_alt, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),
@@ -38,7 +39,8 @@ class _ObservationQuality extends State<ObservationQuality> {
                 ElevatedButton.icon(
                   onPressed: () {
                     //Navigator.pop(context);
-                    Navigator.pushNamed(context, '/context');
+                    Navigator.pushNamed(context, '/context',
+                        arguments: {"context": "bad"});
                   },
                   icon: Icon(Icons.sentiment_dissatisfied_rounded, size: 80.0),
                   label: Text('', style: TextStyle(fontSize: 20)),
