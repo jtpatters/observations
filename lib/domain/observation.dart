@@ -16,6 +16,12 @@ class Observation {
     }
   }
 
+  set quality(String newQuality) {
+    if (newQuality != null && newQuality.length <= 255) {
+      this._quality = newQuality;
+    }
+  }
+
   // Convert a Observation object into a Map object
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();

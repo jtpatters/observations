@@ -18,9 +18,10 @@ class _ObservationContext extends State<ObservationContext> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, Object> rcvdData =
+    final Map<String, Object> arguments =
         ModalRoute.of(context).settings.arguments;
-    print("rcvd fdata ${rcvdData}");
+    observation = new Observation();
+    observation.quality = arguments['quality'];
     return Scaffold(
       appBar: AppBar(
         title: Text("Context"),
