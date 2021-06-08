@@ -27,9 +27,23 @@ class _ObservationHome extends State<ObservationHome> {
     print(dimensionList);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title), actions: <Widget>[
+        Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.show_chart,
+                size: 26.0,
+              ),
+            )),
+        Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(Icons.more_vert),
+            )),
+      ]),
       body: Container(
         margin: const EdgeInsets.only(bottom: 80.0),
         child: Align(
