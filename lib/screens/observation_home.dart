@@ -24,10 +24,13 @@ class _ObservationHome extends State<ObservationHome> {
         Navigator.pushNamed(context, '/stats');
         break;
       case 'Settings':
+        Navigator.pushNamed(context, '/settings');
         break;
       case 'Export':
+        Navigator.pushNamed(context, '/export');
         break;
       case 'About':
+        Navigator.pushNamed(context, '/about');
         break;
     }
   }
