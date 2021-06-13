@@ -18,6 +18,20 @@ class _ObservationHome extends State<ObservationHome> {
   List<Dimension> dimensionList;
   int count = 0;
 
+  void handleClick(String value) {
+    switch (value) {
+      case 'Stats':
+        Navigator.pushNamed(context, '/stats');
+        break;
+      case 'Settings':
+        break;
+      case 'Export':
+        break;
+      case 'About':
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (dimensionList == null) {
@@ -27,23 +41,24 @@ class _ObservationHome extends State<ObservationHome> {
     print(dimensionList);
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title), actions: <Widget>[
-        Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: Icon(
-                Icons.show_chart,
-                size: 26.0,
-              ),
-            )),
-        Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: Icon(Icons.more_vert),
-            )),
-      ]),
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            icon: Icon(Icons.more_horiz),
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Stats', 'Settings', 'Export', 'About'}
+                  .map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
+      ),
       body: Container(
         margin: const EdgeInsets.only(bottom: 80.0),
         child: Align(
