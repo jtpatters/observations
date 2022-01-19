@@ -17,6 +17,7 @@ class _ObservationHome extends State<ObservationHome> {
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<Dimension> dimensionList;
   int count = 0;
+  int observationCount = 0;
 
   void handleClick(String value) {
     switch (value) {
@@ -136,12 +137,11 @@ class _ObservationHome extends State<ObservationHome> {
     print("retrieving list");
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
-      Future<List<Dimension>> todoListFuture =
-          databaseHelper.getDimensionList();
-      todoListFuture.then((todoList) {
+      Future<List<Dimension>> dimListFuture = databaseHelper.getDimensionList();
+      dimListFuture.then((dimList) {
         setState(() {
-          this.dimensionList = todoList;
-          this.count = todoList.length;
+          this.dimensionList = dimList;
+          this.count = dimList.length;
         });
       });
     });

@@ -96,6 +96,14 @@ class DatabaseHelper {
     return result;
   }
 
+  Future<int> getObservationCount() async {
+    Database db = await this.database;
+    List<Map<String, dynamic>> x =
+        await db.rawQuery('SELECT COUNT (*) from $observationTable');
+    int result = Sqflite.firstIntValue(x);
+    return result;
+  }
+
   Future<int> getCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
