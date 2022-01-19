@@ -17,7 +17,6 @@ class _ObservationHome extends State<ObservationHome> {
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<Dimension> dimensionList;
   int count = 0;
-  int observationCount = 0;
 
   void handleClick(String value) {
     switch (value) {
@@ -108,6 +107,13 @@ class _ObservationHome extends State<ObservationHome> {
                     navigateToDetail(
                         this.dimensionList[position], 'Edit Dimension');
                   },
+                ),
+                GestureDetector(
+                  child: Icon(
+                    Icons.show_chart,
+                    color: Theme.of(context).primaryColorLight,
+                  ),
+                  onTap: () {},
                 ),
               ],
             ),
