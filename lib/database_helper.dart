@@ -104,6 +104,15 @@ class DatabaseHelper {
     return result;
   }
 
+  Future<int> getObservationCountByDimension(Dimension dim) async {
+    Database db = await this.database;
+    int id = dim.id;
+    List<Map<String, dynamic>> x = await db.rawQuery(
+        'SELECT COUNT (*) from $observationTable WHERE $colDim = $id');
+    int result = Sqflite.firstIntValue(x);
+    return result;
+  }
+
   Future<int> getCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
@@ -121,6 +130,21 @@ class DatabaseHelper {
     // For loop to create a 'todo List' from a 'Map List'
     for (int i = 0; i < count; i++) {
       dimensionList.add(Dimension.fromMapObject(dimensionMapList[i]));
+    }
+    return dimensionList;
+  }
+
+  Future<List<Dimension>> getDimensionListWithObservationCounts() async {
+    var dimensionMapList =
+        await getDimensionMapList(); // Get 'Map List' from database
+    int count =
+        dimensionMapList.length; // Count the number of map entries in db table
+    List<Dimension> dimensionList = <Dimension>[];
+    // For loop to create a 'todo List' from a 'Map List'
+    for (int i = 0; i < count; i++) {
+      Dimension dim = Dimension.fromMapObject(dimensionMapList[i]);
+      dim.observations = await getObservationCountByDimension(dim);
+      dimensionList.add(dim);
     }
     return dimensionList;
   }

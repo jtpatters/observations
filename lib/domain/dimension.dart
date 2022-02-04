@@ -1,6 +1,7 @@
 class Dimension {
   int _id;
   String _name;
+  int _observations;
 
   Dimension(this._name);
 
@@ -10,10 +11,16 @@ class Dimension {
 
   String get name => _name;
 
+  int get observations => _observations;
+
   set name(String newName) {
     if (newName.length <= 255) {
       this._name = newName;
     }
+  }
+
+  set observations(int obs) {
+    this._observations = obs;
   }
 
   // Convert a Dimension object into a Map object
